@@ -1,0 +1,10 @@
+extends: airbnb
+parser: babel-eslint
+plugins:
+  - react
+env:
+  node: true
+  jest: true
+rules:
+  strict: 0
+  no-underscore-dangle: 0

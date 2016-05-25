@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VAST version="4.0">
+  <Ad id="abc123" sequence="0">
+    <InLine>
+      <AdSystem version="1.0">Shibby Service</AdSystem>
+      <AdTitle>VAST 4.0 Test</AdTitle>
+      <Impression>http://localhost/impression</Impression>
+      <Category authority="IAB">Inline Video</Category>
+      <Description>VAST Inline</Description>
+      <Advertiser>IAB</Advertiser>
+      <Pricing model="CPM" currency="USD">4.00</Pricing>
+      <Survey type="text/javascript">https://localhost/survey.js</Survey>
+      <Extensions/>
+      <ViewableImpression>
+        <Viewable>https://localhost/viewable</Viewable>
+        <NotViewable>https://localhost/notViewable</NotViewable>
+        <ViewUndetermined>https://localhost/notDetermined</ViewUndetermined>
+      </ViewableImpression>
+      <AdVerification/>
+      <Creatives>
+        <Creative adId="abc123" sequence="0" apiFramework="iab-api">
+          <UniversalAdId idValue="unknown">unknown</UniversalAdId>
+          <CreativeExtensions>
+            <CreativeExtension>
+              <Custom>this is custom stuff</Custom>
+            </CreativeExtension>
+          </CreativeExtensions>
+          <Linear>
+            <Duration>00:00:30</Duration>
+            <TrackingEvents>
+              <Tracking event="creativeView">http://localhost/creativeView</Tracking>
+              <Tracking event="start">http://localhost/start</Tracking>
+              <Tracking event="midpoint">http://localhost/midpoint</Tracking>
+              <Tracking event="firstQuartile">http://localhost/firstQuartile</Tracking>
+              <Tracking event="thirdQuartile">http://localhost/thirdQuartile</Tracking>
+              <Tracking event="complete">http://localhost/complete</Tracking>
+            </TrackingEvents>
+            <VideoClicks>
+              <ClickThrough>http://localhost</ClickThrough>
+              <ClickTracking>http://localhost/click</ClickTracking>
+            </VideoClicks>
+            <MediaFiles>
+              <MediaFile delivery="progressive" type="video/mp4" bitrate="600" width="1280" height="720" scalable="true" maintainAspectRatio="true">http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_stereo.ogg</MediaFile>
+            </MediaFiles>
+            <AdParameters><![CDATA[qs=test&reddit=true]]></AdParameters>
+            <Icons>
+              <Icon>http://adchoices.com</Icon>
+            </Icons>
+          </Linear>
+        </Creative>
+        <Creative AdID="123-Companion">
+          <CompanionAds>
+            <Companion width="1920" height="1080" assetWidth="1920" assetHeight="1080">
+              <HTMLResource>http://localhost/htmlresourcefile.htm</HTMLResource>
+              <TrackingEvents>
+                <Tracking event="creativeView">http://iad.com/firstCompanionCreativeView</Tracking>
+              </TrackingEvents>
+            </Companion>
+            <Companion width="1920" height="80">
+              <StaticResource creativeType="image/jpeg"><![CDATA[http://iad.com/companion.jpg?test1=true&test2=false]]></StaticResource>
+              <CompanionClickThrough>http://localhost/clickThrough</CompanionClickThrough>
+            </Companion>
+          </CompanionAds>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+</VAST>

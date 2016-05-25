@@ -1,0 +1,62 @@
+{
+  "name": "vast-player-react",
+  "version": "0.1.0",
+  "description": "A React Component That Plays an Inline VAST 4.0 Ad",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint index.js \"lib/**\" && jest --coverage",
+    "build": "webpack",
+    "lint": "eslint index.js \"lib/**\"",
+    "full-page-build": "webpack --config examples/full-page/webpack.config.js",
+    "examples": "webpack --config examples/full-page/webpack.config.js && node examples/"
+  },
+  "dependencies": {
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "vast-xml-4": "^0.1.0",
+    "lodash": "^4.12.0",
+    "bluebird": "^3.4.0",
+    "jquery": "^2.2.4"
+  },
+  "devDependencies": {
+    "webpack":"^1.13.0",
+    "babel-jest": "^9.0.0",
+    "babel-loader": "^6.2.4", 
+    "babel-core": "^6.9.0",
+    "babel-preset-es2015-webpack": "^6.4.1",
+    "babel-preset-react": "^6.5.0",
+    "eslint": "^2.10.2",
+    "babel-eslint": "^6.0.4",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-react": "^5.1.1",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-import": "^1.8.0",
+    "react-addons-test-utils": "15.0.2",
+    "jest-cli": "^12.0.2",
+    "express": "^4.0.0"
+  },
+  "jest": {
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react/",
+      "<rootDir>/node_modules/react-dom/",
+      "<rootDir>/node_modules/react-addons-test-utils/"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/shibbybird/vast-player-react.git"
+  },
+  "keywords": [
+    "vast",
+    "react",
+    "4.0",
+    "player",
+    "video"
+  ],
+  "author": "Luke Wilson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shibbybird/vast-player-react/issues"
+  },
+  "homepage": "https://github.com/shibbybird/vast-player-react#readme"
+}
