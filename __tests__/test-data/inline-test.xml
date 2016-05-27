@@ -4,17 +4,17 @@
     <InLine>
       <AdSystem version="1.0">Shibby Service</AdSystem>
       <AdTitle>VAST 4.0 Test</AdTitle>
-      <Impression>http://localhost/impression</Impression>
+      <Impression>http://localhost:8080/impression</Impression>
       <Category authority="IAB">Inline Video</Category>
       <Description>VAST Inline</Description>
       <Advertiser>IAB</Advertiser>
       <Pricing model="CPM" currency="USD">4.00</Pricing>
-      <Survey type="text/javascript">https://localhost/survey.js</Survey>
+      <Survey type="text/javascript">https://localhost:8080/survey.js</Survey>
       <Extensions/>
       <ViewableImpression>
-        <Viewable>https://localhost/viewable</Viewable>
-        <NotViewable>https://localhost/notViewable</NotViewable>
-        <ViewUndetermined>https://localhost/notDetermined</ViewUndetermined>
+        <Viewable>https://localhost:8080/viewable</Viewable>
+        <NotViewable>https://localhost:8080/notViewable</NotViewable>
+        <ViewUndetermined>https://localhost:8080/notDetermined</ViewUndetermined>
       </ViewableImpression>
       <AdVerification/>
       <Creatives>
@@ -28,16 +28,16 @@
           <Linear>
             <Duration>00:00:30</Duration>
             <TrackingEvents>
-              <Tracking event="creativeView">http://localhost/creativeView</Tracking>
-              <Tracking event="start">http://localhost/start</Tracking>
-              <Tracking event="midpoint">http://localhost/midpoint</Tracking>
-              <Tracking event="firstQuartile">http://localhost/firstQuartile</Tracking>
-              <Tracking event="thirdQuartile">http://localhost/thirdQuartile</Tracking>
-              <Tracking event="complete">http://localhost/complete</Tracking>
+              <Tracking event="creativeView">http://localhost:8080/creativeView</Tracking>
+              <Tracking event="start">http://localhost:8080/start</Tracking>
+              <Tracking event="midpoint">http://localhost:8080/midpoint</Tracking>
+              <Tracking event="firstQuartile">http://localhost:8080/firstQuartile</Tracking>
+              <Tracking event="thirdQuartile">http://localhost:8080/thirdQuartile</Tracking>
+              <Tracking event="complete">http://localhost:8080/complete</Tracking>
             </TrackingEvents>
             <VideoClicks>
-              <ClickThrough>http://localhost</ClickThrough>
-              <ClickTracking>http://localhost/click</ClickTracking>
+              <ClickThrough>http://localhost:8080</ClickThrough>
+              <ClickTracking>http://localhost:8080/click</ClickTracking>
             </VideoClicks>
             <MediaFiles>
               <MediaFile delivery="progressive" type="video/mp4" bitrate="600" width="1280" height="720" scalable="true" maintainAspectRatio="true">http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_stereo.ogg</MediaFile>
@@ -51,14 +51,10 @@
         <Creative AdID="123-Companion">
           <CompanionAds>
             <Companion width="1920" height="1080" assetWidth="1920" assetHeight="1080">
-              <HTMLResource>http://localhost/htmlresourcefile.htm</HTMLResource>
+              <HTMLResource><![CDATA[http://localhost:8080/__tests__/test-data/test-companion.html]]></HTMLResource>
               <TrackingEvents>
-                <Tracking event="creativeView">http://iad.com/firstCompanionCreativeView</Tracking>
+                <Tracking event="creativeView">http://localhost:8080/firstCompanionCreativeView</Tracking>
               </TrackingEvents>
-            </Companion>
-            <Companion width="1920" height="80">
-              <StaticResource creativeType="image/jpeg"><![CDATA[http://iad.com/companion.jpg?test1=true&test2=false]]></StaticResource>
-              <CompanionClickThrough>http://localhost/clickThrough</CompanionClickThrough>
             </Companion>
           </CompanionAds>
         </Creative>

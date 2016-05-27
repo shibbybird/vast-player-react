@@ -118,7 +118,8 @@ class VastVideo extends React.Component {
       onTimeUpdate={timeUpdate}
       onClick={this.onClick}
       onEnded={onEnd}
-      autoPlay
+      autoPlay={this.props.autoPlay}
+      controls={!this.props.disableControls}
     >
       {source}
     </video>);
@@ -126,8 +127,10 @@ class VastVideo extends React.Component {
 }
 
 VastVideo.propTypes = {
-  height: React.PropTypes.number.isRequired,
-  width: React.PropTypes.number.isRequired,
+  height: React.PropTypes.string.isRequired,
+  width: React.PropTypes.string.isRequired,
+  disableControls: React.PropTypes.boolean,
+  autoPlay: React.PropTypes.boolean,
   duration: React.PropTypes.string.isRequired,
   tracking: React.PropTypes.array.isRequired,
   videoClicks: React.PropTypes.object,

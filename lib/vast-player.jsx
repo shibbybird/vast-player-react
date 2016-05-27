@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Inline from './in-line/index.jsx';
+import styles from './css/style.css';
 
 class VastPlayer extends React.Component {
   constructor(props) {
@@ -24,36 +25,33 @@ class VastPlayer extends React.Component {
     };
   }
 
-  renderInline(inLine) {
-    return (
-      <div>
-        <Inline
-          height={this.props.height}
-          width={this.props.width}
-          inLine={inLine}
-        />
-      </div>
-    );
-  }
-
   render() {
     const renderable = this.state.ads.map((ad) => (
       <Inline
         height={this.props.height}
         width={this.props.width}
         inLine={ad.inLine}
+        videoOptions={this.props.videoOptions}
       />
     ));
 
-    return (<div>{renderable}</div>);
+    return (
+      <div
+        className={styles['vast-player']}
+        style={{ height: this.props.height, width: this.props.width }}
+      >
+        {renderable}
+      </div>
+    );
   }
 
 }
 
 VastPlayer.propTypes = {
   vastJson: React.PropTypes.object.isRequired,
-  height: React.PropTypes.number.isRequired,
-  width: React.PropTypes.number.isRequired,
+  height: React.PropTypes.string.isRequired,
+  width: React.PropTypes.string.isRequired,
+  videoOptions: React.PropTypes.object,
 };
 
 export default VastPlayer;
