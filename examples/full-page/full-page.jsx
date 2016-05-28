@@ -3,7 +3,6 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import VastPlayer from '../../index.js';
-import vastXML from 'vast-xml-4';
 import $ from 'jquery';
 
 const videoOptions = {
@@ -11,16 +10,15 @@ const videoOptions = {
   disableControls: true,
 };
 
-$.get('../../__tests__/test-data/inline-test.xml', (xml) => (
-  vastXML.parse(new XMLSerializer().serializeToString(xml)).bind(this).then((json) => {
+$.get('../../test-data/inline-test.xml', (xml) => (
     ReactDOM.render(
       <VastPlayer
         height="820px"
         width="1280px"
-        vastJson={json.vast}
+        vastXml={new XMLSerializer().serializeToString(xml)}
         videoOptions={videoOptions}
       />,
       document.getElementById('example')
-    );
-  })
-));
+    )
+  )
+);

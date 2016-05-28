@@ -51,7 +51,7 @@
         <Creative AdID="123-Companion">
           <CompanionAds>
             <Companion width="1920" height="1080" assetWidth="1920" assetHeight="1080">
-              <HTMLResource><![CDATA[http://localhost:8080/__tests__/test-data/test-companion.html]]></HTMLResource>
+              <HTMLResource><![CDATA[http://localhost:8080/test-data/test-companion.html]]></HTMLResource>
               <TrackingEvents>
                 <Tracking event="creativeView">http://localhost:8080/firstCompanionCreativeView</Tracking>
               </TrackingEvents>

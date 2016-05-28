@@ -45,7 +45,7 @@ class InLine extends React.Component {
           mediaFiles={linear.mediaFiles.mediaFile}
           autoPlay={this.state.videoOptions.autoPlay}
           disableControls={this.state.videoOptions.disableControls}
-        />        
+        />
         {companions}
       </div>
     );

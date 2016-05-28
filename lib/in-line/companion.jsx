@@ -1,79 +1,47 @@
 'use strict';
 
 import React from 'react';
-import $ from 'jquery';
-import Bluebird from 'bluebird';
 import _ from 'lodash';
+import { HtmlResource, StaticResource, IFrameResource } from '../resources';
 
 class Companion extends React.Component {
-
-  constructor(props) {
-    super(props);
-    // TODO  Implement staticResource
-    /*
-    if (companion.staticResource) {
-    }
-    */
-
-    const companions = this.props.companions;
-    const htmlUrls = [];
-
-    companions.forEach((companion) => {
-      if (companion.htmlResource) {
-        companion.htmlResource.forEach((htmlSrc) => {
-          htmlUrls.push(htmlSrc.getValue());
-        });
-      }
-    });
-
-    this.state = {
-      htmlUrls,
-      renderedHtml: [],
-    };
-  }
-
-  componentDidMount() {
-    const promises = [];
-    if (this.state.renderedHtml.length !== this.state.htmlUrls.length) {
-      const htmlPromises = [];
-      this.state.htmlUrls.forEach((url) => {
-        htmlPromises.push(Bluebird.resolve($.get(url)));
-      });
-      promises.push(Bluebird.all(htmlPromises).bind(this).then((results) => {
-        this.setState({
-          renderedHtml: results.map((htmlStr) => ({ __html: htmlStr })),
-        });
-      }));
-    }
-
-    Bluebird.all(promises);
-  }
 
   renderCompanion(companion) {
     const html = [];
 
     if (companion.iFrameResource) {
-      companion.iFrameResource.forEach((src, index) => {
-        const iframe = (
-          <iframe
-            src={src}
+      companion.iFrameResource.forEach((resource, index) => {
+        const iFrameResource = (
+          <IFrameResource
+            resource={resource}
             key={`iframe-companion-${index}`}
-          >
-          </iframe>
+          />
         );
-        html.push(Bluebird.resolve(iframe));
+        html.push(iFrameResource);
       });
     }
 
-    if (this.state.renderedHtml.length > 0) {
-      this.state.renderedHtml.forEach((htmlObj, index) => {
-        const renderedHtml = (
-          <div
-            key={`html-companion-${index}`} 
-            dangerouslySetInnerHTML={htmlObj}>
-          </div>
+    if (companion.staticResource) {
+      companion.staticResource.forEach((resource, index) => {
+        const staticResource = (
+          <StaticResource
+            resource={resource}
+            key={`static-companion-${index}`}
+          />
         );
-        html.push(renderedHtml);
+        html.push(staticResource);
+      });
+    }
+
+    if (companion.htmlResource) {
+      companion.htmlResource.forEach((resource, index) => {
+        const htmlResource = (
+          <HtmlResource
+            resource={resource}
+            key={`html-companion-${index}`}
+          />
+        );
+        html.push(htmlResource);
       });
     }
 

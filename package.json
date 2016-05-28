@@ -6,7 +6,7 @@
   "scripts": {
     "test": "eslint index.js \"lib/**\" && jest --coverage",
     "build": "webpack",
-    "lint": "eslint index.js \"lib/**\"",
+    "lint": "eslint index.js \"lib/**\" \"__test__/**\"",
     "full-page-build": "webpack --config examples/full-page/webpack.config.js",
     "examples": "webpack --config examples/full-page/webpack.config.js && node examples/"
   },
