@@ -71,7 +71,7 @@ class VastPlayer extends React.Component {
 
     return (
       <div
-        className={styles['vast-player']}
+        className={`${styles['vast-player']} ${styles['vast-base']}`}
         style={{
           height: this.state.heightStr,
           width: this.state.widthStr,

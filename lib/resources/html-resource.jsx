@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Bluebird from 'bluebird';
+import styles from '../css/style.css';
 let request;
 try {
   request = require('browser-request');
@@ -24,7 +25,7 @@ class HtmlResource extends React.Component {
   componentDidMount() {
     Bluebird.resolve(get(this.state.htmlSrc)).bind(this).then((htmlStr) => {
       this.setState({
-        html: { __html: htmlStr },
+        html: { __html: htmlStr.body },
       });
     });
   }
@@ -32,6 +33,7 @@ class HtmlResource extends React.Component {
   render() {
     return (
       <div
+        className={styles['vast-base']}
         dangerouslySetInnerHTML={this.state.html}
       >
       </div>

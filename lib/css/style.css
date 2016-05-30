@@ -1,5 +1,10 @@
+:local(.vast-base) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: transparent;
+}
 
 :local(.vast-player) {
-  position: absolute;
   background-color: #000000;
 }

@@ -3,6 +3,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { HtmlResource, StaticResource, IFrameResource } from '../resources';
+import styles from '../css/style.css';
 
 class Companion extends React.Component {
 
@@ -47,7 +48,7 @@ class Companion extends React.Component {
 
     const divStyle = {
       height: `${companion.getAttr('height')}px`,
-      width: `${companion.getAttr('width')}px;`,
+      width: `${companion.getAttr('width')}px`,
     };
 
     return (
@@ -64,7 +65,7 @@ class Companion extends React.Component {
     _.each(this.props.companions, (companion) => {
       htmls = htmls.concat(this.renderCompanion(companion));
     });
-    return <div>{htmls}</div>;
+    return <div className={styles['vast-base']} >{htmls}</div>;
   }
 
 }

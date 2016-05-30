@@ -4,6 +4,7 @@ import _ from 'lodash';
 import React from 'react';
 import VastVideo from '../video/index.jsx';
 import Companion from './companion.jsx';
+import styles from '../css/style.css';
 
 class InLine extends React.Component {
 
@@ -35,7 +36,7 @@ class InLine extends React.Component {
       <Companion companions={creative.companionAds.companion} />
     ));
     return (
-      <div>
+      <div className={styles['vast-base']}>
         <VastVideo
           height={this.props.height}
           width={this.props.width}

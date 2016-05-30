@@ -4,7 +4,9 @@
   "description": "A React Component That Plays an Inline VAST 4.0 Ad",
   "main": "index.js",
   "scripts": {
-    "test": "eslint index.js \"lib/**\" && babel-node -- node_modules/babel-istanbul/lib/cli cover --print both _mocha test/**/*.test.jsx",
+    "test": "npm run lint && npm run mocha && npm run coverage",
+    "coverage": "babel-istanbul check-coverage --statement 90 --branch 90 --function 90",
+    "mocha": "babel-node -- node_modules/babel-istanbul/lib/cli cover --print both _mocha test/**/*.test.jsx -- --compilers css:./css-noop-compiler.js",
     "build": "webpack",
     "lint": "eslint index.js \"lib/**\"",
     "full-page-build": "webpack --config examples/full-page/webpack.config.js",
