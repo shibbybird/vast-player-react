@@ -1,9 +1,17 @@
 'use strict';
-
 import React from 'react';
 import _ from 'lodash';
-import $ from 'jquery';
+import Bluebird from 'bluebird';
 import VideoSource from './source.jsx';
+let request;
+
+try {
+  request = require('browser-request');
+} catch (e) {
+  request = require('request');
+}
+
+const get = Bluebird.promisify(request);
 
 const VALID_MIME_TYPES = ['video/mp4', 'video/ogg', 'video/webm'];
 
@@ -13,6 +21,7 @@ class VastVideo extends React.Component {
     super(props);
     const durationMillis = this.getDurationInMillis(this.props.duration);
     const quartile = (durationMillis / 4);
+    request = this.props.request || request;
     this.state = {
       tracking: {
         creativeView: this.getTracking('creativeView'),
@@ -44,7 +53,7 @@ class VastVideo extends React.Component {
     if (videoClicks) {
       if (videoClicks.clickTracking) {
         _.each(videoClicks.clickTracking, (href) => {
-          $.get(href);
+          get(href);
         });
       }
       if (videoClicks.clickThrough) {
@@ -54,7 +63,7 @@ class VastVideo extends React.Component {
   }
 
   onEnd() {
-    $.get(this.state.tracking.complete);
+    get(this.state.tracking.complete);
   }
 
   getTracking(trackingName) {
@@ -80,29 +89,29 @@ class VastVideo extends React.Component {
     const duration = this.state.duration;
 
     if (!completed.creativeView && tracking.creativeView) {
-      $.get(tracking.creativeView);
+      get(tracking.creativeView);
       completed.creativeView = true;
     }
     if (!completed.start && tracking.start) {
-      $.get(tracking.start);
+      get(tracking.start);
       completed.start = true;
     }
 
     if (!completed.firstQuartile &&
       currentTime > duration.firstQuartile) {
-      $.get(tracking.firstQuartile);
+      get(tracking.firstQuartile);
       completed.firstQuartile = true;
     }
 
     if (!completed.secondQuartile &&
       currentTime > duration.secondQuartile) {
-      $.get(tracking.secondQuartile);
+      get(tracking.secondQuartile);
       completed.secondQuartile = true;
     }
 
     if (!completed.thirdQuartile &&
       currentTime > duration.thirdQuartile) {
-      $.get(tracking.thirdQuartile);
+      get(tracking.thirdQuartile);
       completed.thirdQuartile = true;
     }
   }
@@ -143,6 +152,7 @@ VastVideo.propTypes = {
     }
     return null;
   },
+  request: React.PropTypes.object,
 };
 
 export default VastVideo;

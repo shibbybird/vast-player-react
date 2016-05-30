@@ -1,13 +1,20 @@
 'use strict';
 
 import React from 'react';
-import $ from 'jquery';
 import Bluebird from 'bluebird';
+let request;
+try {
+  request = require('browser-request');
+} catch (e) {
+  request = require('request');
+}
+const get = Bluebird.promisify(request);
 
 class HtmlResource extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       html: null,
       htmlSrc: this.props.resource.getValue(),
@@ -15,8 +22,7 @@ class HtmlResource extends React.Component {
   }
 
   componentDidMount() {
-    Bluebird.resolve($.get(this.state.htmlSrc)).bind(this).then((htmlStr) => {
-      console.log(htmlStr);
+    Bluebird.resolve(get(this.state.htmlSrc)).bind(this).then((htmlStr) => {
       this.setState({
         html: { __html: htmlStr },
       });
@@ -36,6 +42,7 @@ class HtmlResource extends React.Component {
 
 HtmlResource.propTypes = {
   resource: React.PropTypes.object.isRequired,
+  request: React.PropTypes.object,
 };
 
 export default HtmlResource;

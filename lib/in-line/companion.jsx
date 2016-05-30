@@ -45,7 +45,18 @@ class Companion extends React.Component {
       });
     }
 
-    return html;
+    const divStyle = {
+      height: `${companion.getAttr('height')}px`,
+      width: `${companion.getAttr('width')}px;`,
+    };
+
+    return (
+      <div
+        style={divStyle}
+      >
+        {html}
+      </div>
+    );
   }
 
   render() {

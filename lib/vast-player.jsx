@@ -21,6 +21,8 @@ class VastPlayer extends React.Component {
     }
 
     this.state = {
+      heightStr: `${this.props.height}px`,
+      widthStr: `${this.props.width}px`,
       vast,
       adCount,
       index: 0,
@@ -70,7 +72,10 @@ class VastPlayer extends React.Component {
     return (
       <div
         className={styles['vast-player']}
-        style={{ height: this.props.height, width: this.props.width }}
+        style={{
+          height: this.state.heightStr,
+          width: this.state.widthStr,
+        }}
       >
         {renderable}
       </div>
@@ -82,8 +87,8 @@ class VastPlayer extends React.Component {
 VastPlayer.propTypes = {
   vastXml: React.PropTypes.string,
   vastJson: React.PropTypes.object,
-  height: React.PropTypes.string.isRequired,
-  width: React.PropTypes.string.isRequired,
+  height: React.PropTypes.number.isRequired,
+  width: React.PropTypes.number.isRequired,
   videoOptions: React.PropTypes.object,
 };
 

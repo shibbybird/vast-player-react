@@ -8,6 +8,9 @@ module.exports = {
     path: './examples/full-page/build',
     filename: 'fullpage.bundle.js',
   },
+  externals: {
+    request: 'serverRequest',
+  },
   devtool: 'source-map',
   module: {
     loaders: [

@@ -8,6 +8,9 @@ module.exports = {
     path: './build',
     filename: 'app.bundle.js',
   },
+  externals: {
+    request: 'serverRequest',
+  },
   devtool: 'source-map',
   module: {
     loaders: [

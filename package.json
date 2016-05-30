@@ -4,9 +4,9 @@
   "description": "A React Component That Plays an Inline VAST 4.0 Ad",
   "main": "index.js",
   "scripts": {
-    "test": "eslint index.js \"lib/**\" && jest --coverage",
+    "test": "eslint index.js \"lib/**\" && babel-node -- node_modules/babel-istanbul/lib/cli cover --print both _mocha test/**/*.test.jsx",
     "build": "webpack",
-    "lint": "eslint index.js \"lib/**\" \"__test__/**\"",
+    "lint": "eslint index.js \"lib/**\"",
     "full-page-build": "webpack --config examples/full-page/webpack.config.js",
     "examples": "webpack --config examples/full-page/webpack.config.js && node examples/"
   },
@@ -16,12 +16,12 @@
     "vast-xml-4": "^0.1.0",
     "lodash": "^4.12.0",
     "bluebird": "^3.4.0",
-    "jquery": "^2.2.4"
+    "browser-request": "^0.3.3",
+    "request": "^2.72.0"
   },
   "devDependencies": {
     "webpack":"^1.13.0",
-    "babel-jest": "^9.0.0",
-    "babel-loader": "^6.2.4", 
+    "babel-loader": "^6.2.4",
     "babel-core": "^6.9.0",
     "babel-preset-es2015-webpack": "^6.4.1",
     "babel-preset-react": "^6.5.0",
@@ -32,17 +32,14 @@
     "eslint-plugin-jsx-a11y": "^1.2.0",
     "eslint-plugin-import": "^1.8.0",
     "react-addons-test-utils": "15.0.2",
-    "jest-cli": "^12.0.2",
     "express": "^4.0.0",
     "style-loader": "*",
-    "css-loader": "*"
-  },
-  "jest": {
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react/",
-      "<rootDir>/node_modules/react-dom/",
-      "<rootDir>/node_modules/react-addons-test-utils/"
-    ]
+    "css-loader": "*",
+    "babel-istanbul": "*",
+    "mocha": "^2.4.5",
+    "babel-cli": "^6.9.0",
+    "jsdom": "^9.2.1",
+    "mocha-jsdom": "^1.1.0"
   },
   "repository": {
     "type": "git",

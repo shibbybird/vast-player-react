@@ -3,19 +3,19 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import VastPlayer from '../../index.js';
-import $ from 'jquery';
+import request from 'browser-request';
 
 const videoOptions = {
   autoPlay: true,
   disableControls: true,
 };
 
-$.get('../../test-data/inline-test.xml', (xml) => (
+request('../../test/data/inline-test.xml', (err, xml) => (
     ReactDOM.render(
       <VastPlayer
-        height="820px"
-        width="1280px"
-        vastXml={new XMLSerializer().serializeToString(xml)}
+        height={820}
+        width={1280}
+        vastXml={xml.body}
         videoOptions={videoOptions}
       />,
       document.getElementById('example')

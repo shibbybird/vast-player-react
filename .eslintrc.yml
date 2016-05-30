@@ -4,7 +4,8 @@ plugins:
   - react
 env:
   node: true
-  jest: true
+  mocha: true
 rules:
   strict: 0
   no-underscore-dangle: 0
+  global-require: 1
