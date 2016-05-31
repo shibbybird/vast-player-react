@@ -36,42 +36,17 @@
               <Tracking event="complete">http://localhost:8080/complete</Tracking>
             </TrackingEvents>
             <VideoClicks>
-              <ClickThrough>http://localhost:8080/clickThrough</ClickThrough>
-              <ClickTracking>http://localhost:8080/clickTracking</ClickTracking>
+              <ClickThrough>http://localhost:8080</ClickThrough>
+              <ClickTracking>http://localhost:8080/click</ClickTracking>
             </VideoClicks>
             <MediaFiles>
-              <MediaFile delivery="progressive" type="video/mp4" bitrate="600" width="1280" height="720" scalable="true" maintainAspectRatio="true">http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_stereo.ogg</MediaFile>
+              <MediaFile delivery="progressive" type="fail" bitrate="600" width="1280" height="720" scalable="true" maintainAspectRatio="true">http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_stereo.ogg</MediaFile>
             </MediaFiles>
             <AdParameters><![CDATA[qs=test&reddit=true]]></AdParameters>
             <Icons>
               <Icon>http://adchoices.com</Icon>
             </Icons>
           </Linear>
-        </Creative>
-        <Creative AdID="123-Companion">
-          <CompanionAds>
-            <Companion width="1280" height="820" assetWidth="1280" assetHeight="820">
-              <HTMLResource><![CDATA[http://localhost:8080/test/data/test-companion.html]]></HTMLResource>
-              <TrackingEvents>
-                <Tracking event="creativeView">http://localhost:8080/firstCompanionCreativeView</Tracking>
-              </TrackingEvents>
-            </Companion>
-            <Companion width="1280" height="820" assetWidth="1280" assetHeight="820">
-              <IFrameResource><![CDATA[http://localhost:8080/test/data/test-iframe.html]]></IFrameResource>
-              <TrackingEvents>
-                <Tracking event="creativeView">http://localhost:8080/secondCompanionCreativeView</Tracking>
-              </TrackingEvents>
-            </Companion>
-            <Companion width="1280" height="820" assetWidth="1280" assetHeight="820">
-              <StaticResource creativeType="image/jpeg"><![CDATA[http://localhost:8080/test/data/banner1280x100.png]]></StaticResource>
-              <StaticResource creativeType="application/json"><![CDATA[http://localhost:8080/test/data/test-alert.js]]></StaticResource>
-              <StaticResource creativeType="text/css"><![CDATA[http://localhost:8080/test/data/test-css.css]]></StaticResource>
-              <StaticResource creativeType="test/test"><![CDATA[http://localhost:8080/test/data/fail.test]]></StaticResource>
-              <TrackingEvents>
-                <Tracking event="creativeView">http://localhost:8080/thirdCompanionCreativeView</Tracking>
-              </TrackingEvents>
-            </Companion>
-          </CompanionAds>
         </Creative>
       </Creatives>
     </InLine>

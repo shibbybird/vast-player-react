@@ -1,0 +1,1 @@
+alert('Static Reference Appended');

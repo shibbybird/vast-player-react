@@ -3,7 +3,7 @@
 import React from 'react';
 
 function StaticResource({ resource }) {
-  const mimeType = resource.attr('creativeType');
+  const mimeType = resource.getAttr('creativeType');
   let renderable = null;
 
   if (mimeType.indexOf('image') === 0) {

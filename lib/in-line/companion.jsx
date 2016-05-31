@@ -7,7 +7,7 @@ import styles from '../css/style.css';
 
 class Companion extends React.Component {
 
-  renderCompanion(companion) {
+  renderCompanion(companion, idx) {
     const html = [];
 
     if (companion.iFrameResource) {
@@ -53,7 +53,9 @@ class Companion extends React.Component {
 
     return (
       <div
+        className={styles['vast-base']}
         style={divStyle}
+        key={`companion-ad-${idx}`}
       >
         {html}
       </div>
@@ -62,8 +64,8 @@ class Companion extends React.Component {
 
   render() {
     let htmls = [];
-    _.each(this.props.companions, (companion) => {
-      htmls = htmls.concat(this.renderCompanion(companion));
+    _.each(this.props.companions, (companion, index) => {
+      htmls = htmls.concat(this.renderCompanion(companion, index));
     });
     return <div className={styles['vast-base']} >{htmls}</div>;
   }

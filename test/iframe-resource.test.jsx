@@ -7,9 +7,9 @@ import testUtil from '../test/test-util';
 import assert from 'assert';
 import jsdom from 'mocha-jsdom';
 
-describe('IFrame Companion Ads', () => {
+describe('IFrame Resources', () => {
   jsdom();
-  it('check iframe src', () => (
+  it('validate dom', () => (
     testUtil.getTestXml('./test/data/inline-test.xml').then((json) => {
       const renderer = TestUtils.createRenderer();
       const resource = json.vast.ad[0].inLine.creatives.creative[1].companionAds.companion[1];
@@ -23,4 +23,3 @@ describe('IFrame Companion Ads', () => {
     })
   ));
 });
-

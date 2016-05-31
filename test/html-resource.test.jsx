@@ -12,7 +12,7 @@ import Bluebird from 'bluebird';
 
 const readFile = Bluebird.promisify(fs.readFile);
 
-describe('HTML Companion Ads', () => {
+describe('HTML Resources', () => {
 
   jsdom();
   const app = testUtil.getExpressApp();
@@ -26,7 +26,7 @@ describe('HTML Companion Ads', () => {
     server.close()
   ));
 
-  it('check html src', () => {
+  it('validate dom', () => {
     let htmlResource = null;
     return testUtil.getTestXml('./test/data/inline-test.xml').then((json) => {
       const resource = json.vast.ad[0].inLine.creatives.creative[1].companionAds.companion[0];
