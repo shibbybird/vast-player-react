@@ -1,11 +1,30 @@
 'use strict';
 
 import React from 'react';
-import _ from 'lodash';
 import { HtmlResource, StaticResource, IFrameResource } from '../resources';
 import styles from '../css/style.css';
+import Bluebird from 'bluebird';
+let request;
+
+try {
+  request = require('browser-request');
+} catch (e) {
+  request = require('request');
+}
+const get = Bluebird.promisify(request);
 
 class Companion extends React.Component {
+
+  componentDidMount() {
+    this.props.companions.forEach((companion) => {
+      if (companion.trackingEvents) {
+        companion.trackingEvents.tracking.forEach((track) => {
+          const uri = track.getValue();
+          get(uri);
+        });
+      }
+    });
+  }
 
   renderCompanion(companion, idx) {
     const html = [];
@@ -64,7 +83,7 @@ class Companion extends React.Component {
 
   render() {
     let htmls = [];
-    _.each(this.props.companions, (companion, index) => {
+    this.props.companions.forEach((companion, index) => {
       htmls = htmls.concat(this.renderCompanion(companion, index));
     });
     return <div className={styles['vast-base']} >{htmls}</div>;

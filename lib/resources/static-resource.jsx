@@ -23,7 +23,7 @@ function StaticResource({ resource }) {
       />
     );
   } else {
-    console.warn('Static Resource Not Supported!');
+    console.warn(`Static Resource Of MIME Type ${mimeType} Not Supported!`);
   }
 
   return renderable;

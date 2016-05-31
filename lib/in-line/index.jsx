@@ -17,10 +17,6 @@ class InLine extends React.Component {
     const companionAds = _.filter(creatives, (creative) =>
       (!!creative.companionAds)
     );
-    if (!linearAd) {
-      throw new Error('Currently only support InLine Ads');
-    }
-
     const videoOptions = _.merge({}, this.props.videoOptions);
 
     this.state = {
@@ -32,8 +28,11 @@ class InLine extends React.Component {
 
   render() {
     const linear = this.state.linearAd.linear;
-    const companions = this.state.companionAds.map((creative) => (
-      <Companion companions={creative.companionAds.companion} />
+    const companions = this.state.companionAds.map((creative, idx) => (
+      <Companion
+        key={`companion-${idx}`}
+        companions={creative.companionAds.companion}
+      />
     ));
     return (
       <div className={styles['vast-base']}>
@@ -55,8 +54,8 @@ class InLine extends React.Component {
 }
 
 InLine.propTypes = {
-  height: React.PropTypes.string.isRequired,
-  width: React.PropTypes.string.isRequired,
+  height: React.PropTypes.number.isRequired,
+  width: React.PropTypes.number.isRequired,
   inLine: React.PropTypes.object.isRequired,
   videoOptions: React.PropTypes.object,
 };

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<VAST version="4.0">
+<VAST version="5.0">
   <Ad id="abc123" sequence="0">
     <InLine>
       <AdSystem version="1.0">Shibby Service</AdSystem>

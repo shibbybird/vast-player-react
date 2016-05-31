@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <VAST version="4.0">
   <Ad id="abc123" sequence="0">
-    <InLine>
+    <Wrapper>
+      <VASTAdTagURI>http://localhost:8080/test/data/inline-test.xml</VASTAdTagURI>
       <AdSystem version="1.0">Shibby Service</AdSystem>
-      <AdTitle>VAST 4.0 Test</AdTitle>
       <Impression>http://localhost:8080/impression</Impression>
-      <Category authority="IAB">Inline Video</Category>
-      <Description>VAST Inline</Description>
-      <Advertiser>IAB</Advertiser>
       <Pricing model="CPM" currency="USD">4.00</Pricing>
       <Survey type="text/javascript">https://localhost:8080/survey.js</Survey>
       <Extensions/>
       <ViewableImpression>
-        <Viewable>http://localhost:8080/viewable</Viewable>
-        <NotViewable>http://localhost:8080/notViewable</NotViewable>
-        <ViewUndetermined>http://localhost:8080/notDetermined</ViewUndetermined>
+        <Viewable>https://localhost:8080/viewable</Viewable>
+        <NotViewable>https://localhost:8080/notViewable</NotViewable>
+        <ViewUndetermined>https://localhost:8080/notDetermined</ViewUndetermined>
       </ViewableImpression>
       <AdVerification/>
       <Creatives>
@@ -71,6 +68,6 @@
           </CompanionAds>
         </Creative>
       </Creatives>
-    </InLine>
+    </Wrapper>
   </Ad>
 </VAST>

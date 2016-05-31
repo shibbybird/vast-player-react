@@ -4,6 +4,15 @@ import React from 'react';
 import Inline from './in-line/index.jsx';
 import styles from './css/style.css';
 import vastXml from 'vast-xml-4';
+import Bluebird from 'bluebird';
+
+let request;
+try {
+  request = require('browser-request');
+} catch (e) {
+  request = require('request');
+}
+const get = Bluebird.promisify(request);
 
 class VastPlayer extends React.Component {
 
@@ -27,6 +36,7 @@ class VastPlayer extends React.Component {
       adCount,
       index: 0,
       ads,
+      isTrackingFired: false,
     };
   }
 
@@ -41,6 +51,30 @@ class VastPlayer extends React.Component {
         });
       });
     }
+    this.fireTracking();
+  }
+
+  componentDidUpdate() {
+    this.fireTracking();
+  }
+
+  fireTracking() {
+    if (!this.isTrackingFired && this.state.vast) {
+      this.isTrackingFired = true;
+      this.state.ads.forEach((ad) => {
+        if (ad.inLine.impression) {
+          ad.inLine.impression.forEach((pixel) => {
+            get(pixel.getValue());
+          });
+        }
+
+        if (ad.inLine.viewableImpression && ad.inLine.viewableImpression.viewUndetermined) {
+          ad.inLine.viewableImpression.viewUndetermined.forEach((impression) => {
+            get(impression.getValue());
+          });
+        }
+      });
+    }
   }
 
   validateJson(vastJson) {
@@ -49,7 +83,7 @@ class VastPlayer extends React.Component {
       throw new Error('React Vast Player only support VAST 4.0');
     }
 
-    if (!ads) {
+    if (ads.length === 0) {
       throw new Error('No InLine Ads Found');
     }
 
@@ -59,8 +93,9 @@ class VastPlayer extends React.Component {
   render() {
     let renderable = null;
     if (this.state.vast) {
-      renderable = this.state.ads.map((ad) => (
+      renderable = this.state.ads.map((ad, idx) => (
         <Inline
+          key={`inline-${idx}`}
           height={this.props.height}
           width={this.props.width}
           inLine={ad.inLine}

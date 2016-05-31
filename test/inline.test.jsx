@@ -1,26 +1,46 @@
-/*'use strict';
+'use strict';
 
 import React from 'react';
+import ReactDom from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import InLine from '../lib/in-line/index.jsx';
 import testUtil from '../test/test-util';
 import assert from 'assert';
 import jsdom from 'mocha-jsdom';
 
-describe('Companion Ads', () => {
+describe('Inline', () => {
   jsdom();
-  it('check iframe src', () => (
-    testUtil.getTestXml('./test/data/inline-test.xml').then((json) => {
-      const renderer = TestUtils.createRenderer();
-      const companions = json.vast.ad[0].inLine;
+  const app = testUtil.getExpressApp();
+  let server = null;
+  let inLineDocNode = null;
 
-      const iFrame = renderer.render(
-        <InLine companions={companions} />
+  before(() => {
+    server = app.listen(8080);
+    return testUtil.getTestXml('./test/data/inline-test.xml').then((json) => {
+      const inLine = json.vast.ad[0].inLine;
+      const videoOptions = {
+        autoPlay: true,
+      };
+      const inlineDoc = TestUtils.renderIntoDocument(
+        <InLine
+          inLine={inLine}
+          height={400}
+          width={600}
+          videoOptions={videoOptions}
+        />
       );
-
-      assert.equal(iFrame.type, 'div');
-      assert.equal(iFrame.props.children.length, 3);
+      inLineDocNode = ReactDom.findDOMNode(inlineDoc);
     })
+    .delay(500);
+  });
+
+  after(() => (
+    server.close()
   ));
+
+  it('Validate Dom', () => {
+    assert.equal(inLineDocNode.tagName, 'DIV');
+    assert.equal(inLineDocNode.children[0].tagName, 'VIDEO', 'Inline Video Element');
+    assert.equal(inLineDocNode.children[1].tagName, 'DIV', 'Companion DIV Container');
+  });
 });
-*/
