@@ -8,3 +8,7 @@
 :local(.vast-player) {
   background-color: #000000;
 }
+
+:local(.hide) {
+  display: none;
+}

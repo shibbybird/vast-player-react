@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VAST version="4.0">
+  <Ad id="abc123" sequence="0">
+    <InLine>
+      <AdSystem version="1.0">Shibby Service</AdSystem>
+      <AdTitle>VAST 4.0 Test</AdTitle>
+      <Impression>http://localhost:8080/impression</Impression>
+      <Category authority="IAB">Inline Video</Category>
+      <Description>VAST Inline</Description>
+      <Advertiser>IAB</Advertiser>
+      <Pricing model="CPM" currency="USD">4.00</Pricing>
+      <Survey type="text/javascript">https://localhost:8080/survey.js</Survey>
+      <Extensions/>
+      <ViewableImpression>
+        <Viewable>http://localhost:8080/viewable</Viewable>
+        <NotViewable>http://localhost:8080/notViewable</NotViewable>
+        <ViewUndetermined>http://localhost:8080/notDetermined</ViewUndetermined>
+      </ViewableImpression>
+      <AdVerification/>
+      <Creatives>
+        <Creative adId="abc123" sequence="0" apiFramework="iab-api">
+          <UniversalAdId idValue="unknown">unknown</UniversalAdId>
+          <CreativeExtensions>
+            <CreativeExtension>
+              <Custom>this is custom stuff</Custom>
+            </CreativeExtension>
+          </CreativeExtensions>
+          <Linear>
+            <Duration>00:01:42</Duration>
+            <TrackingEvents>
+              <Tracking event="creativeView">http://localhost:8080/creativeView</Tracking>
+              <Tracking event="start">http://localhost:8080/start</Tracking>
+              <Tracking event="midpoint">http://localhost:8080/midpoint</Tracking>
+              <Tracking event="firstQuartile">http://localhost:8080/firstQuartile</Tracking>
+              <Tracking event="thirdQuartile">http://localhost:8080/thirdQuartile</Tracking>
+              <Tracking event="complete">http://localhost:8080/complete</Tracking>
+            </TrackingEvents>
+            <VideoClicks>
+              <ClickThrough>http://localhost:8080/clickThrough</ClickThrough>
+              <ClickTracking>http://localhost:8080/clickTracking</ClickTracking>
+            </VideoClicks>
+            <MediaFiles>
+              <MediaFile delivery="progressive" type="video/mp4" bitrate="500" width="1920" height="1080" scalable="true" maintainAspectRatio="true">
+                http://localhost/rogue_one_1080.mp4
+              </MediaFile>
+            </MediaFiles>
+            <Icons>
+              <Icon>http://adchoices.com</Icon>
+            </Icons>
+          </Linear>
+        </Creative>
+        <Creative AdID="123-Companion">
+          <CompanionAds>
+            <Companion width="1280" height="820" assetWidth="1280" assetHeight="820">
+              <HTMLResource><![CDATA[http://localhost:8080/test/data/test-companion.html]]></HTMLResource>
+              <TrackingEvents>
+                <Tracking event="creativeView">http://localhost:8080/companionTracking</Tracking>
+              </TrackingEvents>
+            </Companion>
+          </CompanionAds>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+  <Ad id="abc124" sequence="1">
+    <InLine>
+      <AdSystem version="1.0">Shibby Service</AdSystem>
+      <AdTitle>VAST 4.0 Test</AdTitle>
+      <Impression>http://localhost:8080/impression</Impression>
+      <Category authority="IAB">Inline Video</Category>
+      <Description>VAST Inline</Description>
+      <Advertiser>IAB</Advertiser>
+      <Pricing model="CPM" currency="USD">4.00</Pricing>
+      <Survey type="text/javascript">https://localhost:8080/survey.js</Survey>
+      <Extensions/>
+      <ViewableImpression>
+        <Viewable>http://localhost:8080/viewable</Viewable>
+        <NotViewable>http://localhost:8080/notViewable</NotViewable>
+        <ViewUndetermined>http://localhost:8080/notDetermined</ViewUndetermined>
+      </ViewableImpression>
+      <AdVerification/>
+      <Creatives>
+        <Creative adId="abc124" sequence="0" apiFramework="iab-api">
+          <UniversalAdId idValue="unknown">unknown</UniversalAdId>
+          <CreativeExtensions>
+            <CreativeExtension>
+              <Custom>this is custom stuff</Custom>
+            </CreativeExtension>
+          </CreativeExtensions>
+          <Linear>
+            <Duration>00:02:34</Duration>
+            <TrackingEvents>
+              <Tracking event="creativeView">http://localhost:8080/creativeView</Tracking>
+              <Tracking event="start">http://localhost:8080/start</Tracking>
+              <Tracking event="midpoint">http://localhost:8080/midpoint</Tracking>
+              <Tracking event="firstQuartile">http://localhost:8080/firstQuartile</Tracking>
+              <Tracking event="thirdQuartile">http://localhost:8080/thirdQuartile</Tracking>
+              <Tracking event="complete">http://localhost:8080/complete</Tracking>
+            </TrackingEvents>
+            <VideoClicks>
+              <ClickThrough>http://localhost:8080/clickThrough</ClickThrough>
+              <ClickTracking>http://localhost:8080/clickTracking</ClickTracking>
+            </VideoClicks>
+            <MediaFiles>
+              <MediaFile delivery="progressive" type="video/mp4" bitrate="500" width="1920" height="1080" scalable="true" maintainAspectRatio="true">
+                http://localhost/zootopia_1080.mp4
+              </MediaFile>
+            </MediaFiles>
+            <Icons>
+              <Icon>http://adchoices.com</Icon>
+            </Icons>
+          </Linear>
+        </Creative>
+        <Creative AdID="123-Companion">
+          <CompanionAds>
+            <Companion width="1280" height="820" assetWidth="1280" assetHeight="820">
+              <StaticResource creativeType="text/css"><![CDATA[http://localhost:8080/test/data/test-css.css]]></StaticResource>
+              <TrackingEvents>
+                <Tracking event="creativeView">http://localhost:8080/companionTracking</Tracking>
+              </TrackingEvents>
+            </Companion>
+          </CompanionAds>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+  <Ad id="abc125" sequence="2">
+    <InLine>
+      <AdSystem version="1.0">Shibby Service</AdSystem>
+      <AdTitle>VAST 4.0 Test</AdTitle>
+      <Impression>http://localhost:8080/impression</Impression>
+      <Category authority="IAB">Inline Video</Category>
+      <Description>VAST Inline</Description>
+      <Advertiser>IAB</Advertiser>
+      <Pricing model="CPM" currency="USD">4.00</Pricing>
+      <Survey type="text/javascript">https://localhost:8080/survey.js</Survey>
+      <Extensions/>
+      <ViewableImpression>
+        <Viewable>http://localhost:8080/viewable</Viewable>
+        <NotViewable>http://localhost:8080/notViewable</NotViewable>
+        <ViewUndetermined>http://localhost:8080/notDetermined</ViewUndetermined>
+      </ViewableImpression>
+      <AdVerification/>
+      <Creatives>
+        <Creative adId="abc125" sequence="0" apiFramework="iab-api">
+          <UniversalAdId idValue="unknown">unknown</UniversalAdId>
+          <CreativeExtensions>
+            <CreativeExtension>
+              <Custom>this is custom stuff</Custom>
+            </CreativeExtension>
+          </CreativeExtensions>
+          <Linear>
+            <Duration>00:01:52</Duration>
+            <TrackingEvents>
+              <Tracking event="creativeView">http://localhost:8080/creativeView</Tracking>
+              <Tracking event="start">http://localhost:8080/start</Tracking>
+              <Tracking event="midpoint">http://localhost:8080/midpoint</Tracking>
+              <Tracking event="firstQuartile">http://localhost:8080/firstQuartile</Tracking>
+              <Tracking event="thirdQuartile">http://localhost:8080/thirdQuartile</Tracking>
+              <Tracking event="complete">http://localhost:8080/complete</Tracking>
+            </TrackingEvents>
+            <VideoClicks>
+              <ClickThrough>http://localhost:8080/clickThrough</ClickThrough>
+              <ClickTracking>http://localhost:8080/clickTracking</ClickTracking>
+            </VideoClicks>
+            <MediaFiles>
+              <MediaFile delivery="progressive" type="video/mp4" bitrate="500" width="1920" height="1080" scalable="true" maintainAspectRatio="true">
+                http://localhost/lego_batman_1080.mp4
+              </MediaFile>
+            </MediaFiles>
+            <Icons>
+              <Icon>http://adchoices.com</Icon>
+            </Icons>
+          </Linear>
+        </Creative>
+        <Creative AdID="123-Companion">
+          <CompanionAds>
+            <Companion width="1280" height="820" assetWidth="1280" assetHeight="820">
+              <StaticResource creativeType="text/css"><![CDATA[http://localhost:8080/test/data/test-css.css]]></StaticResource>
+              <TrackingEvents>
+                <Tracking event="creativeView">http://localhost:8080/companionTracking</Tracking>
+              </TrackingEvents>
+            </Companion>
+          </CompanionAds>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+</VAST>

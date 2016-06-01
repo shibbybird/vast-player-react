@@ -10,7 +10,8 @@
     "build": "webpack",
     "lint": "eslint index.js \"lib/**\"",
     "full-page-build": "webpack --config examples/full-page/webpack.config.js",
-    "examples": "webpack --config examples/full-page/webpack.config.js && node examples/"
+    "multi-ad-build": "webpack --config examples/multi-ad/webpack.config.js",
+    "examples": "npm run full-page-build && npm run multi-ad-build && node examples/"
   },
   "dependencies": {
     "react": "^15.0.2",

@@ -5,6 +5,7 @@ import Inline from './in-line/index.jsx';
 import styles from './css/style.css';
 import vastXml from 'vast-xml-4';
 import Bluebird from 'bluebird';
+import _ from 'lodash';
 
 let request;
 try {
@@ -21,6 +22,9 @@ class VastPlayer extends React.Component {
     const vast = this.props.vastJson;
     let ads = null;
     let adCount = 0;
+
+    // References to all Ads
+    this.adRefs = [];
 
     if (vast) {
       ads = this.validateJson(this.props.vastJson);
@@ -56,6 +60,19 @@ class VastPlayer extends React.Component {
 
   componentDidUpdate() {
     this.fireTracking();
+    this.adRefs[this.state.index].startVideo();
+  }
+
+  onEnded() {
+    if (this.props.onEnded) {
+      this.props.onEnded();
+    }
+
+    if ((this.state.index + 1) < this.state.adCount) {
+      this.setState({
+        index: (this.state.index + 1),
+      });
+    }
   }
 
   fireTracking() {
@@ -93,15 +110,35 @@ class VastPlayer extends React.Component {
   render() {
     let renderable = null;
     if (this.state.vast) {
-      renderable = this.state.ads.map((ad, idx) => (
-        <Inline
-          key={`inline-${idx}`}
-          height={this.props.height}
-          width={this.props.width}
-          inLine={ad.inLine}
-          videoOptions={this.props.videoOptions}
-        />
-      ));
+      renderable = this.state.ads.map((ad, idx) => {
+        let className = null;
+        const videoOptions = _.cloneDeep(this.props.videoOptions);
+
+        if (idx !== this.state.index) {
+          className = styles.hide;
+          videoOptions.autoPlay = false;
+        }
+
+        if (this.state.index > 0) {
+          videoOptions.autoPlay = false;
+        }
+        const onEnded = this.onEnded.bind(this);
+        return (
+          <div
+            className={`${className} ${styles['vast-base']}`}
+          >
+            <Inline
+              ref={(ref) => (this.adRefs.push(ref))}
+              onEnded={onEnded}
+              key={`inline-${idx}`}
+              height={this.props.height}
+              width={this.props.width}
+              inLine={ad.inLine}
+              videoOptions={videoOptions}
+            />
+          </div>
+        );
+      });
     }
 
     return (
@@ -124,6 +161,7 @@ VastPlayer.propTypes = {
   vastJson: React.PropTypes.object,
   height: React.PropTypes.number.isRequired,
   width: React.PropTypes.number.isRequired,
+  onEnded: React.PropTypes.func,
   videoOptions: React.PropTypes.object,
 };
 

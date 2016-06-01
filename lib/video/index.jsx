@@ -10,7 +10,6 @@ try {
 } catch (e) {
   request = require('request');
 }
-
 const get = Bluebird.promisify(request);
 
 const VALID_MIME_TYPES = ['video/mp4', 'video/ogg', 'video/webm'];
@@ -66,8 +65,9 @@ class VastVideo extends React.Component {
     }
   }
 
-  onEnd() {
+  onEnd(e) {
     get(this.state.tracking.complete);
+    this.props.onVideoEnded(e);
   }
 
   getTracking(trackingName) {
@@ -84,6 +84,11 @@ class VastVideo extends React.Component {
     const seconds = timeArr[2];
     const milliseconds = timeArr.length > 3 ? timeArr[3] : 0;
     return (hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000) + milliseconds;
+  }
+
+  startVideo() {
+    this.videoRef.currentTime = 0;
+    this.videoRef.play();
   }
 
   timeUpdate(evt) {
@@ -127,6 +132,7 @@ class VastVideo extends React.Component {
     const timeUpdate = this.timeUpdate.bind(this);
     const onEnd = this.onEnd.bind(this);
     return (<video
+      ref={(ref) => (this.videoRef = ref)}
       preload="auto"
       onTimeUpdate={timeUpdate}
       onClick={this.onClick}
@@ -146,6 +152,7 @@ VastVideo.propTypes = {
   tracking: React.PropTypes.array.isRequired,
   videoClicks: React.PropTypes.object,
   mediaFiles: React.PropTypes.array.isRequired,
+  onVideoEnded: React.PropTypes.func.isRequired,
 };
 
 export default VastVideo;

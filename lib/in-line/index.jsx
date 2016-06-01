@@ -26,6 +26,14 @@ class InLine extends React.Component {
     };
   }
 
+  onEnded() {
+    this.props.onEnded();
+  }
+
+  startVideo() {
+    this.vastVideoRef.startVideo();
+  }
+
   render() {
     const linear = this.state.linearAd.linear;
     const companions = this.state.companionAds.map((creative, idx) => (
@@ -34,9 +42,12 @@ class InLine extends React.Component {
         companions={creative.companionAds.companion}
       />
     ));
+    const onEnded = this.onEnded.bind(this);
     return (
       <div className={styles['vast-base']}>
         <VastVideo
+          ref={(ref) => (this.vastVideoRef = ref)}
+          onVideoEnded={onEnded}
           height={this.props.height}
           width={this.props.width}
           duration={linear.duration.getValue()}
@@ -57,6 +68,7 @@ InLine.propTypes = {
   height: React.PropTypes.number.isRequired,
   width: React.PropTypes.number.isRequired,
   inLine: React.PropTypes.object.isRequired,
+  onEnded: React.PropTypes.func.isRequired,
   videoOptions: React.PropTypes.object,
 };
 

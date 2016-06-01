@@ -23,6 +23,10 @@ describe('HTML Resources', () => {
   let isCompleted = false;
   let isClickTracked = false;
 
+  const stubbedVideoEnded = function () {
+    return null;
+  }
+
   class MockVideo extends React.Component {
     componentDidMount() {
       refs = this.refs['video-test'];
@@ -37,6 +41,7 @@ describe('HTML Resources', () => {
           tracking={this.props.linear.trackingEvents.tracking}
           videoClicks={this.props.videoClicks}
           mediaFiles={this.props.linear.mediaFiles.mediaFile}
+          onVideoEnded={stubbedVideoEnded}
         />
       );
     }
@@ -125,6 +130,7 @@ describe('HTML Resources', () => {
           tracking={linear.trackingEvents.tracking}
           videoClicks={linear.videoClicks}
           mediaFiles={mediaFile}
+          onVideoEnded={stubbedVideoEnded}
         />)
       );
       assert(!vastVideo, 'Vast Video instantiation should fail');
