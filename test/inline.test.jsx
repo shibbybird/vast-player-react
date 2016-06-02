@@ -14,6 +14,10 @@ describe('Inline', () => {
   let server = null;
   let inLineDocNode = null;
 
+  function onEnded() {
+    return null;
+  }
+
   before(() => {
     server = app.listen(8080);
     return testUtil.getTestXml('./test/data/inline-test.xml').then((json) => {
@@ -23,6 +27,7 @@ describe('Inline', () => {
       };
       const inlineDoc = TestUtils.renderIntoDocument(
         <InLine
+          onEnded={onEnded}
           inLine={inLine}
           height={400}
           width={600}

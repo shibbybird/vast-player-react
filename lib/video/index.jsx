@@ -65,7 +65,7 @@ class VastVideo extends React.Component {
     }
   }
 
-  onEnd(e) {
+  onEnded(e) {
     get(this.state.tracking.complete);
     this.props.onVideoEnded(e);
   }
@@ -89,9 +89,14 @@ class VastVideo extends React.Component {
   startVideo() {
     this.videoRef.currentTime = 0;
     this.videoRef.play();
+    this.adTimeout = setTimeout(() => {
+      this.onEnded();
+    }, this.state.duration.millis);
   }
 
   timeUpdate(evt) {
+    // Ad Timeout based on Ad length
+    clearTimeout(this.adTimeout);
     const currentTime = (evt.currentTarget.currentTime * 1000);
     const completed = this.state.completed;
     const tracking = this.state.tracking;
@@ -126,18 +131,34 @@ class VastVideo extends React.Component {
   }
 
   render() {
-    const source = this.state.mediaFiles.map((media, idx) => (
-      <VideoSource key={idx} media={media} />
-    ));
+    let height = 0;
+    let width = 0;
+    let currentHeightDiff = Infinity;
+    let currentWidthDiff = Infinity;
+    const source = this.state.mediaFiles.map((media, idx) => {
+      const mediaHeight = parseInt(media.getAttr('height'), 10);
+      const mediaWidth = parseInt(media.getAttr('width'), 10);
+      const heightDiff = Math.abs(mediaHeight - this.props.height);
+      const widthDiff = Math.abs(mediaWidth - this.props.width);
+      if ((heightDiff + widthDiff) < (currentHeightDiff + currentWidthDiff)) {
+        currentHeightDiff = heightDiff;
+        currentWidthDiff = widthDiff;
+        height = mediaHeight;
+        width = mediaWidth;
+      }
+      return (<VideoSource key={idx} media={media} />);
+    });
+
     const timeUpdate = this.timeUpdate.bind(this);
-    const onEnd = this.onEnd.bind(this);
+    const onEnded = this.onEnded.bind(this);
     return (<video
+      height={`${height}px`}
+      width={`${width}px`}
       ref={(ref) => (this.videoRef = ref)}
       preload="auto"
       onTimeUpdate={timeUpdate}
       onClick={this.onClick}
-      onEnded={onEnd}
-      autoPlay={this.props.autoPlay}
+      onEnded={onEnded}
       controls={!this.props.disableControls}
     >
       {source}
@@ -146,8 +167,9 @@ class VastVideo extends React.Component {
 }
 
 VastVideo.propTypes = {
+  height: React.PropTypes.number.isRequired,
+  width: React.PropTypes.number.isRequired,
   disableControls: React.PropTypes.bool,
-  autoPlay: React.PropTypes.bool,
   duration: React.PropTypes.string.isRequired,
   tracking: React.PropTypes.array.isRequired,
   videoClicks: React.PropTypes.object,

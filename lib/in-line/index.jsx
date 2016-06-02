@@ -54,7 +54,6 @@ class InLine extends React.Component {
           tracking={linear.trackingEvents.tracking}
           videoClicks={linear.videoClicks}
           mediaFiles={linear.mediaFiles.mediaFile}
-          autoPlay={this.state.videoOptions.autoPlay}
           disableControls={this.state.videoOptions.disableControls}
         />
         {companions}

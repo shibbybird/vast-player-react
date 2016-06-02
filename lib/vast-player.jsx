@@ -116,15 +116,12 @@ class VastPlayer extends React.Component {
 
         if (idx !== this.state.index) {
           className = styles.hide;
-          videoOptions.autoPlay = false;
         }
 
-        if (this.state.index > 0) {
-          videoOptions.autoPlay = false;
-        }
         const onEnded = this.onEnded.bind(this);
         return (
           <div
+            key={`inline-div-${idx}`}
             className={`${className} ${styles['vast-base']}`}
           >
             <Inline

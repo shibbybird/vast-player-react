@@ -124,6 +124,8 @@ describe('HTML Resources', () => {
       const vastVideo = TestUtils.renderIntoDocument(
         (<VastVideo
           key="new"
+          height={1080}
+          width={1920}
           disableControls={disableControls}
           autoPlay={autoPlay}
           duration={'00:01:40.000'}
@@ -200,7 +202,7 @@ describe('HTML Resources', () => {
   ));
 
   it('Complete tracking', () => (
-    Bluebird.resolve(refs.onEnd())
+    Bluebird.resolve(refs.onEnded())
     .delay(50)
     .then(() => (
       assert(isCompleted, 'Complete Tracking Did Not Fire')
