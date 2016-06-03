@@ -9,7 +9,7 @@ import assert from 'assert';
 import Bluebird from 'bluebird';
 import jsdom from 'mocha-jsdom';
 
-describe('HTML Resources', () => {
+describe('Video Player', () => {
   jsdom();
   const app = testUtil.getExpressApp();
   let server = null;
@@ -35,6 +35,8 @@ describe('HTML Resources', () => {
       return (
         <VastVideo
           ref="video-test"
+          height={1080}
+          width={1920}
           disableControls={this.props.disableControls}
           autoPlay={this.props.autoPlay}
           duration={this.props.duration}

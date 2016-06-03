@@ -64,14 +64,14 @@ class VastPlayer extends React.Component {
   }
 
   onEnded() {
-    if (this.props.onEnded) {
-      this.props.onEnded();
-    }
-
     if ((this.state.index + 1) < this.state.adCount) {
       this.setState({
         index: (this.state.index + 1),
       });
+    } else {
+      if (this.props.onEnded) {
+        this.props.onEnded();
+      }
     }
   }
 

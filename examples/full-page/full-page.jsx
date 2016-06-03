@@ -6,7 +6,6 @@ import VastPlayer from '../../index.js';
 import request from 'browser-request';
 
 const videoOptions = {
-  autoPlay: true,
   disableControls: true,
 };
 

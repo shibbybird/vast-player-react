@@ -6,9 +6,12 @@ import VastPlayer from '../../index.js';
 import request from 'browser-request';
 
 const videoOptions = {
-  autoPlay: false,
   disableControls: true,
 };
+
+function alertFinished() {
+  alert('Video Finished');
+}
 
 request('../../test/data/multi-ad.xml', (err, xml) => (
     ReactDOM.render(
@@ -17,6 +20,7 @@ request('../../test/data/multi-ad.xml', (err, xml) => (
         width={1920}
         vastXml={xml.body}
         videoOptions={videoOptions}
+        onEnded={alertFinished}
       />,
       document.getElementById('example')
     )
