@@ -16,7 +16,7 @@ function StaticResource({ resource }) {
         href={resource.getValue()}
       />
     );
-  } else if (mimeType.indexOf('application/json') === 0) {
+  } else if (mimeType.indexOf('application/javascript') === 0) {
     renderable = (
       <script
         src={resource.getValue()}

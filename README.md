@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/shibbybird/vast-player-react.svg?branch=master)](https://travis-ci.org/shibbybird/vast-player-react)
 
-This is the first functioning pass at a react component for playing vast ads. Inline linear ads are currently supported. Support for NonLinear ads coming soon.
+This is the first functioning pass at a react component for playing vast ads including support for linear, and non linear ad types.
 
 ## Usage:
 

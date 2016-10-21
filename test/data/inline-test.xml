@@ -61,7 +61,7 @@
             </Companion>
             <Companion width="1280" height="820" assetWidth="1280" assetHeight="820">
               <StaticResource creativeType="image/jpeg"><![CDATA[http://localhost:8080/test/data/banner1280x100.png]]></StaticResource>
-              <StaticResource creativeType="application/json"><![CDATA[http://localhost:8080/test/data/test-alert.js]]></StaticResource>
+              <StaticResource creativeType="application/javascript"><![CDATA[http://localhost:8080/test/data/test-alert.js]]></StaticResource>
               <StaticResource creativeType="text/css"><![CDATA[http://localhost:8080/test/data/test-css.css]]></StaticResource>
               <StaticResource creativeType="test/test"><![CDATA[http://localhost:8080/test/data/fail.test]]></StaticResource>
               <TrackingEvents>
