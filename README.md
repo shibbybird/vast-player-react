@@ -52,7 +52,6 @@ npm run examples
 
 ## TODO
 * Add Wrapper Support
-* Add NonLinear Ad Support
 * Icons Not Implements
 * Lots of Attribute Odds and Ends Not Implemented
 * Many More Things
