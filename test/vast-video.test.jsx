@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import VastVideo from '../lib/video/index.jsx';
+import Linear from '../lib/linear/index.jsx';
 import testUtil from '../test/test-util';
 import assert from 'assert';
 import Bluebird from 'bluebird';
@@ -33,7 +33,7 @@ describe('Video Player', () => {
     }
     render() {
       return (
-        <VastVideo
+        <Linear
           ref="video-test"
           height={1080}
           width={1920}
@@ -124,7 +124,7 @@ describe('Video Player', () => {
       const disableControls = true;
       const autoPlay = true;
       const vastVideo = TestUtils.renderIntoDocument(
-        (<VastVideo
+        (<Linear
           key="new"
           height={1080}
           width={1920}

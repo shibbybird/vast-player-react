@@ -1,12 +1,12 @@
 'use strict';
 
 import React from 'react';
-import styles from '../css/style.css';
+import { vastBaseStyle } from '../helpers/styles';
 
 function IFrameResource({ resource }) {
   return (
     <iframe
-      className={styles['vast-base']}
+      style={vastBaseStyle}
       src={resource.getValue()}
     >
     </iframe>

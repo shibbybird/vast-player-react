@@ -2,14 +2,8 @@
 
 import React from 'react';
 import Bluebird from 'bluebird';
-import styles from '../css/style.css';
-let request;
-try {
-  request = require('browser-request');
-} catch (e) {
-  request = require('request');
-}
-const get = Bluebird.promisify(request);
+import axios from 'axios';
+import { vastBaseStyle } from '../helpers/styles';
 
 class HtmlResource extends React.Component {
 
@@ -23,9 +17,9 @@ class HtmlResource extends React.Component {
   }
 
   componentDidMount() {
-    Bluebird.resolve(get(this.state.htmlSrc)).bind(this).then((htmlStr) => {
+    Bluebird.resolve(axios.get(this.state.htmlSrc)).then((htmlStr) => {
       this.setState({
-        html: { __html: htmlStr.body },
+        html: { __html: htmlStr.data },
       });
     });
   }
@@ -33,7 +27,7 @@ class HtmlResource extends React.Component {
   render() {
     return (
       <div
-        className={styles['vast-base']}
+        style={vastBaseStyle}
         dangerouslySetInnerHTML={this.state.html}
       >
       </div>

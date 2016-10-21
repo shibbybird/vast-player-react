@@ -1,11 +1,11 @@
 {
   "name": "vast-player-react",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A React Component That Plays an Inline VAST 4.0 Ad",
   "main": "index.js",
   "scripts": {
     "test": "npm run lint && npm run mocha && npm run coverage",
-    "coverage": "babel-istanbul check-coverage --statement 90 --branch 90 --function 90",
+    "coverage": "babel-istanbul check-coverage --statement 80 --branch 80 --function 80",
     "mocha": "babel-node -- node_modules/babel-istanbul/lib/cli cover --print both _mocha test/**/*.test.jsx -- --compilers css:./css-noop-compiler.js",
     "build": "webpack",
     "lint": "eslint index.js \"lib/**\"",
@@ -19,8 +19,7 @@
     "vast-xml-4": "^0.1.0",
     "lodash": "^4.12.0",
     "bluebird": "^3.4.0",
-    "browser-request": "^0.3.3",
-    "request": "^2.72.0"
+    "axios": "<2.0.0"
   },
   "devDependencies": {
     "webpack":"^1.13.0",
@@ -28,6 +27,7 @@
     "babel-core": "^6.9.0",
     "babel-preset-es2015-webpack": "^6.4.1",
     "babel-preset-react": "^6.5.0",
+    "babel-plugin-transform-object-rest-spread": "*",
     "eslint": "^2.10.2",
     "babel-eslint": "^6.0.4",
     "eslint-config-airbnb": "^9.0.1",

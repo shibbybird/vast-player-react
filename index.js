@@ -1,5 +1,3 @@
-'use strict';
+require('babel-core/register');
 
-import VastPlayer from './lib/vast-player.jsx';
-
-export default VastPlayer;
+module.exports = require('./lib/vast-player.jsx');

@@ -1,16 +1,8 @@
 'use strict';
 import React from 'react';
 import _ from 'lodash';
-import Bluebird from 'bluebird';
 import VideoSource from './source.jsx';
-let request;
-
-try {
-  request = require('browser-request');
-} catch (e) {
-  request = require('request');
-}
-const get = Bluebird.promisify(request);
+import axios from 'axios';
 
 const VALID_MIME_TYPES = ['video/mp4', 'video/ogg', 'video/webm'];
 
@@ -59,14 +51,14 @@ class VastVideo extends React.Component {
     const videoClicks = this.props.videoClicks;
     if (videoClicks) {
       _.each(videoClicks.clickTracking, (href) => {
-        get(href.getValue());
+        axios.get(href.getValue());
       });
       window.open(videoClicks.clickThrough.getValue(), '_blank');
     }
   }
 
   onEnded(e) {
-    get(this.state.tracking.complete);
+    axios.get(this.state.tracking.complete);
     this.props.onVideoEnded(e);
   }
 
@@ -103,29 +95,29 @@ class VastVideo extends React.Component {
     const duration = this.state.duration;
 
     if (!completed.creativeView && tracking.creativeView) {
-      get(tracking.creativeView);
+      axios.get(tracking.creativeView);
       completed.creativeView = true;
     }
     if (!completed.start && tracking.start) {
-      get(tracking.start);
+      axios.get(tracking.start);
       completed.start = true;
     }
 
     if (!completed.firstQuartile &&
       currentTime >= duration.firstQuartile) {
-      get(tracking.firstQuartile);
+      axios.get(tracking.firstQuartile);
       completed.firstQuartile = true;
     }
 
     if (!completed.midpoint &&
       currentTime >= duration.midpoint) {
-      get(tracking.midpoint);
+      axios.get(tracking.midpoint);
       completed.midpoint = true;
     }
 
     if (!completed.thirdQuartile &&
       currentTime >= duration.thirdQuartile) {
-      get(tracking.thirdQuartile);
+      axios.get(tracking.thirdQuartile);
       completed.thirdQuartile = true;
     }
   }
@@ -149,16 +141,14 @@ class VastVideo extends React.Component {
       return (<VideoSource key={idx} media={media} />);
     });
 
-    const timeUpdate = this.timeUpdate.bind(this);
-    const onEnded = this.onEnded.bind(this);
     return (<video
       height={`${height}px`}
       width={`${width}px`}
       ref={(ref) => (this.videoRef = ref)}
       preload="auto"
-      onTimeUpdate={timeUpdate}
-      onClick={this.onClick}
-      onEnded={onEnded}
+      onTimeUpdate={(e) => { this.timeUpdate(e); }}
+      onClick={(e) => { this.onClick(e); }}
+      onEnded={(e) => { this.onEnded(e); }}
       controls={!this.props.disableControls}
     >
       {source}

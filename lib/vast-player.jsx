@@ -2,18 +2,12 @@
 
 import React from 'react';
 import Inline from './in-line/index.jsx';
-import styles from './css/style.css';
 import vastXml from 'vast-xml-4';
-import Bluebird from 'bluebird';
+import axios from 'axios';
 import _ from 'lodash';
+import { vastBaseStyle } from './helpers/styles';
 
-let request;
-try {
-  request = require('browser-request');
-} catch (e) {
-  request = require('request');
-}
-const get = Bluebird.promisify(request);
+const vastBase = JSON.parse(JSON.stringify(vastBaseStyle));
 
 class VastPlayer extends React.Component {
 
@@ -60,7 +54,9 @@ class VastPlayer extends React.Component {
 
   componentDidUpdate() {
     this.fireTracking();
-    this.adRefs[this.state.index].startVideo();
+    if (this.adRefs[this.state.index]) {
+      this.adRefs[this.state.index].startVideo();
+    }
   }
 
   onEnded() {
@@ -81,13 +77,13 @@ class VastPlayer extends React.Component {
       this.state.ads.forEach((ad) => {
         if (ad.inLine.impression) {
           ad.inLine.impression.forEach((pixel) => {
-            get(pixel.getValue());
+            axios.get(pixel.getValue());
           });
         }
 
         if (ad.inLine.viewableImpression && ad.inLine.viewableImpression.viewUndetermined) {
           ad.inLine.viewableImpression.viewUndetermined.forEach((impression) => {
-            get(impression.getValue());
+            axios.get(impression.getValue());
           });
         }
       });
@@ -109,24 +105,28 @@ class VastPlayer extends React.Component {
 
   render() {
     let renderable = null;
+    const vastPlayerStyle = {
+      backgroundColor: '#000000',
+      height: this.state.heightStr,
+      width: this.state.widthStr,
+      ...vastBase,
+    };
     if (this.state.vast) {
       renderable = this.state.ads.map((ad, idx) => {
-        let className = null;
         const videoOptions = _.cloneDeep(this.props.videoOptions);
 
         if (idx !== this.state.index) {
-          className = styles.hide;
+          vastBase.display = 'none';
         }
 
-        const onEnded = this.onEnded.bind(this);
         return (
           <div
             key={`inline-div-${idx}`}
-            className={`${className} ${styles['vast-base']}`}
+            style={vastBase}
           >
             <Inline
               ref={(ref) => (this.adRefs.push(ref))}
-              onEnded={onEnded}
+              onEnded={(e) => { this.onEnded(e); }}
               key={`inline-${idx}`}
               height={this.props.height}
               width={this.props.width}
@@ -140,11 +140,7 @@ class VastPlayer extends React.Component {
 
     return (
       <div
-        className={`${styles['vast-player']} ${styles['vast-base']}`}
-        style={{
-          height: this.state.heightStr,
-          width: this.state.widthStr,
-        }}
+        style={vastPlayerStyle}
       >
         {renderable}
       </div>

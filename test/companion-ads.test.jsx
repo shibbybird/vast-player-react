@@ -23,11 +23,10 @@ describe('Compaion Ads', () => {
     return testUtil.getTestXml('./test/data/inline-test.xml').then((json) => {
       const companions = json.vast.ad[0].inLine.creatives.creative[1].companionAds.companion;
       const companionDoc = TestUtils.renderIntoDocument(
-        <Companion companions={companions} />
+        <div><Companion companions={companions} /></div>
       );
       companionDocNode = ReactDom.findDOMNode(companionDoc);
-    })
-    .delay(500);
+    }).delay(500);
   });
 
   after(() => (
@@ -36,7 +35,7 @@ describe('Compaion Ads', () => {
 
   it('Validate Dom', () => {
     assert.equal(companionDocNode.tagName, 'DIV');
-    assert.equal(companionDocNode.children.length, 3);
+    assert.equal(companionDocNode.children[0].children.length, 3);
   });
 
   it('Validate Tracking', () => {

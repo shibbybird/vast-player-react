@@ -3,18 +3,18 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import VastPlayer from '../../index.js';
-import request from 'browser-request';
+import axios from 'axios';
 
 const videoOptions = {
   disableControls: true,
 };
 
-request('../../test/data/inline-test.xml', (err, xml) => (
+axios.get('../../test/data/inline-test.xml').then((xml) => (
     ReactDOM.render(
       <VastPlayer
         height={820}
         width={1280}
-        vastXml={xml.body}
+        vastXml={xml.data}
         videoOptions={videoOptions}
       />,
       document.getElementById('example')

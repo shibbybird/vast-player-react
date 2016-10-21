@@ -2,7 +2,7 @@
 
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import VideoSource from '../lib/video/source.jsx';
+import VideoSource from '../lib/linear/source.jsx';
 import testUtil from '../test/test-util';
 import assert from 'assert';
 import jsdom from 'mocha-jsdom';
