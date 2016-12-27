@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import BaseResource from '../resources/base-resource.jsx';
+import BaseResource from '../resources/base-resource';
 import { vastBaseStyle } from '../helpers/styles';
 
 function Companion({ companions }) {

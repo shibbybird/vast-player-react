@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseResource from '../resources/base-resource.jsx';
+import BaseResource from '../resources/base-resource';
 
 function NonLinear({ height, width, nonLinear }) {
   return (

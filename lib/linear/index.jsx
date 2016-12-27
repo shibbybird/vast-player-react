@@ -1,7 +1,7 @@
 'use strict';
 import React from 'react';
 import _ from 'lodash';
-import VideoSource from './source.jsx';
+import VideoSource from './source';
 import axios from 'axios';
 
 const VALID_MIME_TYPES = ['video/mp4', 'video/ogg', 'video/webm'];

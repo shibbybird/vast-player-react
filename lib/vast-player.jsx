@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Inline from './in-line/index.jsx';
+import Inline from './in-line/index';
 import vastXml from 'vast-xml-4';
 import axios from 'axios';
 import _ from 'lodash';

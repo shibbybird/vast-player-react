@@ -2,15 +2,17 @@
   "name": "vast-player-react",
   "version": "0.2.1",
   "description": "A React Component That Plays an Inline VAST 4.0 Ad",
-  "main": "index.js",
+  "main": "src/vast-player.js",
   "scripts": {
     "test": "npm run lint && npm run mocha && npm run coverage",
     "coverage": "babel-istanbul check-coverage --statement 80 --branch 80 --function 80",
     "mocha": "babel-node -- node_modules/babel-istanbul/lib/cli cover --print both _mocha test/**/*.test.jsx -- --compilers css:./css-noop-compiler.js",
-    "build": "webpack",
+    "build-example": "webpack",
+    "build": "babel --presets babel-preset-react,babel-preset-es2015 lib --out-dir src --source-maps",
     "lint": "eslint index.js \"lib/**\"",
     "full-page-build": "webpack --config examples/full-page/webpack.config.js",
     "multi-ad-build": "webpack --config examples/multi-ad/webpack.config.js",
+    "prepublish": "npm run build",
     "examples": "npm run full-page-build && npm run multi-ad-build && node examples/"
   },
   "dependencies": {

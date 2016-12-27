@@ -2,9 +2,9 @@
 
 import _ from 'lodash';
 import React from 'react';
-import Linear from '../linear/index.jsx';
-import NonLinear from './non-linear.jsx';
-import Companion from './companion.jsx';
+import Linear from '../linear/index';
+import NonLinear from './non-linear';
+import Companion from './companion';
 import { vastBaseStyle } from '../helpers/styles';
 
 class InLine extends React.Component {
