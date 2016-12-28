@@ -132,6 +132,7 @@ class VastPlayer extends React.Component {
               key={`inline-${idx}`}
               height={this.props.height}
               width={this.props.width}
+              defaultDuration={this.props.defaultDuration}
               inLine={ad.inLine}
               videoOptions={videoOptions}
             />
@@ -154,6 +155,7 @@ class VastPlayer extends React.Component {
 VastPlayer.propTypes = {
   vastXml: React.PropTypes.string,
   vastJson: React.PropTypes.object,
+  defaultDuration: React.PropTypes.string,
   height: React.PropTypes.number.isRequired,
   width: React.PropTypes.number.isRequired,
   onEnded: React.PropTypes.func,

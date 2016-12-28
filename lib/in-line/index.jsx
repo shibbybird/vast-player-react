@@ -72,7 +72,8 @@ class InLine extends React.Component {
         let onEnded = () => {};
         if (key === 0) {
           duration = this.state.nonLinearAds.duration
-            ? this.state.nonLinearAds.duration.getValue() : undefined;
+            ? this.state.nonLinearAds.duration.getValue()
+            : this.props.defaultDuration || undefined;
           tracking = this.state.nonLinearAds.trackingEvents ?
             this.state.nonLinearAds.trackingEvents.tracking : [];
           onEnded = (e) => { this.onEnded(e); };
@@ -123,6 +124,7 @@ InLine.propTypes = {
   inLine: React.PropTypes.object.isRequired,
   onEnded: React.PropTypes.func.isRequired,
   videoOptions: React.PropTypes.object,
+  defaultDuration: React.PropTypes.string,
 };
 
 export default InLine;

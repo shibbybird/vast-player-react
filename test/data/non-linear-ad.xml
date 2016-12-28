@@ -13,7 +13,6 @@
           <UniversalAdId idValue="unknown">unknown</UniversalAdId>
           <CreativeExtensions/>
           <NonLinearAds>
-            <Duration>00:00:01</Duration>
             <TrackingEvents>
               <Tracking event="start"><![CDATA[http://localhost:8080/non-linear/start]]></Tracking>
               <Tracking event="complete"><![CDATA[http://localhost:8080/non-linear/complete]]></Tracking>

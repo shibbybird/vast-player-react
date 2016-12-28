@@ -43,6 +43,7 @@ describe('VAST non-linear', () => {
     .then((xml) => {
       const nonLinear = TestUtils.renderIntoDocument(
         <VastPlayer
+          defaultDuration={'00:00:01'}
           vastXml={xml.toString()}
           height={1080}
           width={1920}
