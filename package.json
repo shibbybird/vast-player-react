@@ -1,6 +1,6 @@
 {
   "name": "vast-player-react",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A React Component That Plays an Inline VAST 4.0 Ad",
   "main": "src/vast-player.js",
   "scripts": {
