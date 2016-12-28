@@ -9,7 +9,7 @@ import assert from 'assert';
 import Bluebird from 'bluebird';
 import jsdom from 'mocha-jsdom';
 
-describe('Video Player', () => {
+describe('Vast Video', () => {
   jsdom();
   const app = testUtil.getExpressApp();
   let server = null;
@@ -25,7 +25,7 @@ describe('Video Player', () => {
 
   const stubbedVideoEnded = function () {
     return null;
-  }
+  };
 
   class MockVideo extends React.Component {
     componentDidMount() {

@@ -13,7 +13,7 @@
     "full-page-build": "webpack --config examples/full-page/webpack.config.js",
     "multi-ad-build": "webpack --config examples/multi-ad/webpack.config.js",
     "prepublish": "npm run build",
-    "examples": "npm run full-page-build && npm run multi-ad-build && node examples/"
+    "examples": "npm run build && npm run full-page-build && npm run multi-ad-build && node examples/"
   },
   "dependencies": {
     "react": "15.0.2",

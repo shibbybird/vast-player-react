@@ -114,15 +114,17 @@ class VastPlayer extends React.Component {
     if (this.state.vast) {
       renderable = this.state.ads.map((ad, idx) => {
         const videoOptions = _.cloneDeep(this.props.videoOptions);
-
+        const style = {
+          ...vastBase,
+        };
         if (idx !== this.state.index) {
-          vastBase.display = 'none';
+          style.display = 'none';
         }
 
         return (
           <div
             key={`inline-div-${idx}`}
-            style={vastBase}
+            style={style}
           >
             <Inline
               ref={(ref) => (this.adRefs.push(ref))}

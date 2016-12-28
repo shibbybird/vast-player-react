@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<VAST version="4.0">
+  <Ad id="25" sequence="0">
+    <InLine>
+      <AdSystem version="1.0">Charm Digital</AdSystem>
+      <AdTitle>VAST 4.0 Test</AdTitle>
+      <Description>Charm Rich Media</Description>
+      <Advertiser>Charm Digital Signage</Advertiser>
+      <Extensions/>
+      <ViewableImpression/>
+      <Creatives>
+        <Creative>
+          <UniversalAdId idValue="unknown">unknown</UniversalAdId>
+          <CreativeExtensions/>
+          <NonLinearAds>
+            <Duration>00:00:01</Duration>
+            <TrackingEvents>
+              <Tracking event="start"><![CDATA[http://localhost:8080/non-linear/start]]></Tracking>
+              <Tracking event="complete"><![CDATA[http://localhost:8080/non-linear/complete]]></Tracking>
+            </TrackingEvents>
+            <NonLinear>
+              <HTMLResource>http://localhost:8080/test/data/test-companion.html</HTMLResource>
+              <StaticResource creativeType="application/javascript"><![CDATA[http://localhost:8080/test/data/test-alert.js]]></StaticResource>
+              <NonLinearClickTracking/>
+            </NonLinear>
+            <NonLinear>
+              <HTMLResource>http://localhost:8080/test/data/test-companion.html</HTMLResource>
+              <StaticResource creativeType="application/javascript"><![CDATA[http://localhost:8080/test/data/test-alert.js]]></StaticResource>
+              <NonLinearClickTracking/>
+            </NonLinear>
+          </NonLinearAds>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+</VAST>

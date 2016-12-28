@@ -2,19 +2,12 @@
 
 import React from 'react';
 import { HtmlResource, StaticResource, IFrameResource } from './index.js';
-import axios from 'axios';
 import { vastBaseStyle } from '../helpers/styles';
 
 class BaseResource extends React.Component {
 
   componentDidMount() {
-    const baseResource = this.props.baseResource;
-    if (baseResource.trackingEvents) {
-      baseResource.trackingEvents.tracking.forEach((track) => {
-        const uri = track.getValue();
-        axios.get(uri);
-      });
-    }
+    this.state = {};
   }
 
   render() {

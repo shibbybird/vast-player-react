@@ -1,8 +1,10 @@
 'use strict';
+import axios from 'axios';
 import React from 'react';
 import _ from 'lodash';
 import VideoSource from './source';
-import axios from 'axios';
+import { getVastDurationInMillis } from '../helpers/duration';
+import { getTracking } from '../helpers/tracking';
 
 const VALID_MIME_TYPES = ['video/mp4', 'video/ogg', 'video/webm'];
 
@@ -10,7 +12,7 @@ class VastVideo extends React.Component {
 
   constructor(props) {
     super(props);
-    const durationMillis = this.getDurationInMillis(this.props.duration);
+    const durationMillis = getVastDurationInMillis(this.props.duration);
     const quartile = (durationMillis / 4);
     const validMediaFiles = this.props.mediaFiles
       .filter((value) => (
@@ -19,16 +21,15 @@ class VastVideo extends React.Component {
     if (validMediaFiles.length === 0) {
       throw new Error('No Supported Video MIME Types');
     }
-
     this.state = {
       mediaFiles: validMediaFiles,
       tracking: {
-        creativeView: this.getTracking('creativeView'),
-        start: this.getTracking('start'),
-        midpoint: this.getTracking('midpoint'),
-        firstQuartile: this.getTracking('firstQuartile'),
-        thirdQuartile: this.getTracking('thirdQuartile'),
-        complete: this.getTracking('complete'),
+        creativeViews: getTracking('creativeView', this.props.tracking),
+        starts: getTracking('start', this.props.tracking),
+        midpoints: getTracking('midpoint', this.props.tracking),
+        firstQuartiles: getTracking('firstQuartile', this.props.tracking),
+        thirdQuartiles: getTracking('thirdQuartile', this.props.tracking),
+        completes: getTracking('complete', this.props.tracking),
       },
       duration: {
         millis: durationMillis,
@@ -58,24 +59,10 @@ class VastVideo extends React.Component {
   }
 
   onEnded(e) {
-    axios.get(this.state.tracking.complete);
+    this.state.tracking.completes.forEach((src) => {
+      axios.get(src);
+    });
     this.props.onVideoEnded(e);
-  }
-
-  getTracking(trackingName) {
-    return _.find(this.props.tracking, (value) => (
-          value.getAttr('event') === trackingName
-        )).getValue();
-  }
-
-  getDurationInMillis(timeStr) {
-    const arr = timeStr.split(':');
-    const timeArr = arr.slice(0, 2).concat(arr[2].split('.')).map(parseFloat);
-    const hours = timeArr[0];
-    const minutes = timeArr[1];
-    const seconds = timeArr[2];
-    const milliseconds = timeArr.length > 3 ? timeArr[3] : 0;
-    return (hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000) + milliseconds;
   }
 
   startVideo() {
@@ -93,31 +80,42 @@ class VastVideo extends React.Component {
     const completed = this.state.completed;
     const tracking = this.state.tracking;
     const duration = this.state.duration;
-
-    if (!completed.creativeView && tracking.creativeView) {
-      axios.get(tracking.creativeView);
+    if (!completed.creativeView) {
+      tracking.creativeViews.forEach((src) => {
+        axios.get(src);
+      });
       completed.creativeView = true;
     }
-    if (!completed.start && tracking.start) {
-      axios.get(tracking.start);
+
+    if (!completed.start) {
+      tracking.starts.forEach((src) => {
+        axios.get(src);
+        completed.start = true;
+      });
       completed.start = true;
     }
 
     if (!completed.firstQuartile &&
       currentTime >= duration.firstQuartile) {
-      axios.get(tracking.firstQuartile);
+      tracking.firstQuartiles.forEach((src) => {
+        axios.get(src);
+      });
       completed.firstQuartile = true;
     }
 
     if (!completed.midpoint &&
       currentTime >= duration.midpoint) {
-      axios.get(tracking.midpoint);
+      tracking.midpoints.forEach((src) => {
+        axios.get(src);
+      });
       completed.midpoint = true;
     }
 
     if (!completed.thirdQuartile &&
       currentTime >= duration.thirdQuartile) {
-      axios.get(tracking.thirdQuartile);
+      tracking.thirdQuartiles.forEach((src) => {
+        axios.get(src);
+      });
       completed.thirdQuartile = true;
     }
   }

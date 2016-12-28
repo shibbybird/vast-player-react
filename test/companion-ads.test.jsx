@@ -12,21 +12,36 @@ describe('Compaion Ads', () => {
   jsdom();
   const app = testUtil.getExpressApp();
   let server = null;
-  let trackingCount = 0;
   let companionDocNode = null;
+  let startedCount = 0;
+  let completedCount = 0;
   before(() => {
     server = app.listen(8080);
-    app.get('/companionTracking', () => {
-      trackingCount++;
+    app.get('/start', () => {
+      startedCount++;
+    });
+
+    app.get('/complete', () => {
+      completedCount++;
     });
 
     return testUtil.getTestXml('./test/data/inline-test.xml').then((json) => {
-      const companions = json.vast.ad[0].inLine.creatives.creative[1].companionAds.companion;
+      const companionAds = json.vast.ad[0].inLine.creatives.creative[1].companionAds;
+      const companions = companionAds.companion;
+      const companionDom = companions.map((comp, key) => {
+        return (<Companion
+          key={`dude-${key}`}
+          duration={companionAds.duration.getValue()}
+          tracking={(comp.trackingEvents ?
+              comp.trackingEvents.tracking : [])}
+          companion={comp}
+        />);
+      });
       const companionDoc = TestUtils.renderIntoDocument(
-        <div><Companion companions={companions} /></div>
+        <div>{companionDom}</div>
       );
       companionDocNode = ReactDom.findDOMNode(companionDoc);
-    }).delay(500);
+    }).delay(1050);
   });
 
   after(() => (
@@ -35,10 +50,11 @@ describe('Compaion Ads', () => {
 
   it('Validate Dom', () => {
     assert.equal(companionDocNode.tagName, 'DIV');
-    assert.equal(companionDocNode.children[0].children.length, 3);
+    assert.equal(companionDocNode.children.length, 3);
   });
 
   it('Validate Tracking', () => {
-    assert.equal(trackingCount, 2, 'Not All Companion Ads Didn\'t Track Correctly');
+    assert.equal(startedCount, 2);
+    assert.equal(completedCount, 1);
   });
 });

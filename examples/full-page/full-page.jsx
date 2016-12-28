@@ -2,7 +2,7 @@
 
 import ReactDOM from 'react-dom';
 import React from 'react';
-import VastPlayer from '../../index.js';
+import VastPlayer from '../../src/vast-player.js';
 import axios from 'axios';
 
 const videoOptions = {

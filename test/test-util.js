@@ -6,7 +6,6 @@ import fs from 'fs';
 
 const fsReadFile = Bluebird.promisify(fs.readFile);
 const express = require('express');
-const app = express();
 
 class TestUtils {
   static getTestXml(xmlPath) {
@@ -16,6 +15,7 @@ class TestUtils {
   }
 
   static getExpressApp() {
+    const app = express();
     app.use(express.static('./'));
     return app;
   }
